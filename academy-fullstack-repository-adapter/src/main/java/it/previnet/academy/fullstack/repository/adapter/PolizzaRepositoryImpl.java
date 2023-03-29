@@ -1,6 +1,5 @@
 package it.previnet.academy.fullstack.repository.adapter;
 
-import it.previnet.academy.fullstack.model.ExampleEntity;
 import it.previnet.academy.fullstack.model.PolizzaEntity;
 import it.previnet.academy.fullstack.repository.port.PolizzaRepository;
 import org.jboss.logging.Logger;
