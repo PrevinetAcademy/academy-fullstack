@@ -13,6 +13,7 @@ public abstract class AbstractRepositoryImpl<T> implements AbstractRepository<T>
 
     private final Class<T> entityType;
 
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public AbstractRepositoryImpl(){
         Class clazz= getClass();
         while(!clazz.getSuperclass().getName().equals(AbstractRepositoryImpl.class.getName())){
@@ -47,7 +48,7 @@ public abstract class AbstractRepositoryImpl<T> implements AbstractRepository<T>
     }
 
     protected EntityManager getEntityManager() {
-        // if you have to choose between more entity manager yoc can check info from uriInfo
+        // if you have to choose between more entity manager you can check info from uriInfo
         return entityManager;
     }
 }
