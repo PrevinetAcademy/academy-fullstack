@@ -1,0 +1,25 @@
+ARG DOCKER_REGISTRY_URL
+FROM ${DOCKER_REGISTRY_URL}/previnet/previnet-opendjdk11-base:0.0.6
+
+ARG MODULE_NAME
+ARG TARGET_ENVIRONMENT
+
+
+ENV MODULE_NAME=$MODULE_NAME
+ENV TARGET_ENVIRONMENT=$TARGET_ENVIRONMENT
+
+
+# Copy lib jar
+COPY $MODULE_NAME/target/                            /app/$MODULE_NAME
+
+WORKDIR /app/$MODULE_NAME
+
+USER root
+
+COPY $MODULE_NAME/startup.sh /app/$MODULE_NAME/startup.sh
+
+RUN chmod 0755 /app/$MODULE_NAME/startup.sh
+
+USER 2002
+
+ENTRYPOINT ["./startup.sh"]

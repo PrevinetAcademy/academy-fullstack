@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>it.previnet.academy.fullstack</groupId>
+    <artifactId>academy-fullstack-root</artifactId>
+    <version>0.0.1</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>../academy-fullstack-bean</module>
+        <module>../academy-fullstack-model</module>
+        <module>../academy-fullstack-repository-port</module>
+        <module>../academy-fullstack-repository-adapter</module>
+        <module>../academy-fullstack-service-port</module>
+        <module>../academy-fullstack-service-adapter</module>
+        <module>../academy-fullstack-presentation-port</module>
+        <module>../academy-fullstack-presentation-adapter</module>
+        <module>../academy-fullstack-webapp</module>
+        <module>../academy-fullstack-runner</module>
+    </modules>
+
+    <properties>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <surefire-plugin.version>2.22.2</surefire-plugin.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <java.release>11</java.release>
+
+        <quarkus.version>1.11.3.Final</quarkus.version>
+
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
+        <maven-exec-plugin.version>1.6.0</maven-exec-plugin.version>
+        <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
+
+        <com.fasterxml.jackson.datatype.version>2.11.0</com.fasterxml.jackson.datatype.version>
+        <io.jsonwebtoken.version>0.10.7</io.jsonwebtoken.version>
+        <org.javassist.version>3.27.0-GA</org.javassist.version>
+
+        <runnerdir>academy-fullstack-runner</runnerdir>
+
+        <project.cod-frontend>academy-fullstack</project.cod-frontend>
+
+        <build.properties>../academy-fullstack-runner/conf/build.properties.EMPTY</build.properties>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.quarkus</groupId>
+                <artifactId>quarkus-bom</artifactId>
+                <version>${quarkus.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-api</artifactId>
+                <version>${io.jsonwebtoken.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-impl</artifactId>
+                <version>${io.jsonwebtoken.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-jackson</artifactId>
+                <version>${io.jsonwebtoken.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.datatype</groupId>
+                <artifactId>jackson-datatype-jsr310</artifactId>
+                <version>${com.fasterxml.jackson.datatype.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.datatype</groupId>
+                <artifactId>jackson-datatype-jdk8</artifactId>
+                <version>${com.fasterxml.jackson.datatype.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <profiles>
+        <profile>
+            <id>test</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <project.environment>test</project.environment>
+            </properties>
+        </profile>
+        <profile>
+            <id>collaudo</id>
+            <properties>
+                <project.environment>collaudo</project.environment>
+            </properties>
+        </profile>
+        <profile>
+            <id>produzione</id>
+            <properties>
+                <project.environment>produzione</project.environment>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>snapshot</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <build.properties>../academy-fullstack-runner/conf/build.properties.${project.environment}</build.properties>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>release</id>
+            <properties>
+            </properties>
+        </profile>
+
+    </profiles>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>io.quarkus</groupId>
+                    <artifactId>quarkus-maven-plugin</artifactId>
+                    <version>${quarkus.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${surefire-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>${surefire-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>${maven-clean-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${maven-resources-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>exec-maven-plugin</artifactId>
+                    <version>${maven-exec-plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <release>${java.release}</release>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <systemProperties>
+                        <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
+                        <property>
+                            <name>build.properties</name>
+                            <value>${build.properties}</value>
+                        </property>
+                    </systemProperties>
+                </configuration>
+            </plugin>
+
+        </plugins>
+
+        <filters>
+            <filter>${build.properties}</filter>
+        </filters>
+    </build>
+
+
+
+</project>

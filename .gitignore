@@ -1,0 +1,29 @@
+**/.idea
+/**/target
+
+### Eclipse ###
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+.project
+
+# JDT-specific (Eclipse Java Development Tools)
+.classpath
+
+######################
+# IDEA
+######################
+*.iml
+*.ipr
+*.iws
+.idea/
+atlassian-ide-plugin.xml
+**/*.iml

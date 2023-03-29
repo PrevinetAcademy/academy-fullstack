@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<project
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+    xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>academy-fullstack-service-port</artifactId>
+    <packaging>jar</packaging>
+    <name>academy-fullstack-service-port</name>
+
+    <parent>
+        <groupId>it.previnet.academy.fullstack</groupId>
+        <artifactId>academy-fullstack-root</artifactId>
+        <version>0.0.1</version>
+        <relativePath>../academy-fullstack-root/pom.xml</relativePath>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>it.previnet.academy.fullstack</groupId>
+            <artifactId>academy-fullstack-bean</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.enterprise</groupId>
+            <artifactId>jakarta.enterprise.cdi-api</artifactId>
+        </dependency>
+    </dependencies>
+</project>

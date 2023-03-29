@@ -1,0 +1,4 @@
+
+ext.quarkus.datasource.jdbc.url=TODO
+ext.quarkus.datasource.username=TODO
+ext.quarkus.datasource.password=TODO
