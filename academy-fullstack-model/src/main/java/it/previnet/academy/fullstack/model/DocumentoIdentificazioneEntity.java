@@ -1,12 +1,6 @@
 package it.previnet.academy.fullstack.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -17,9 +11,6 @@ public class DocumentoIdentificazioneEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tokenDocumentoIdentificazioneGenerator")
     @Column(name = "token_documento_identificazion", nullable = false)
     private Integer tokenDocumentoIdentificazion;
-
-    @Column(name = "token_nominativo", nullable = false)
-    private Integer tokenNominativo;
 
     @Column(name = "tipo_documento_identificazione", length = 2)
     private String tipoDocumentoIdentificazione;
@@ -69,8 +60,8 @@ public class DocumentoIdentificazioneEntity {
     @Column(name = "barcode", length = 40)
     private String barcode;
 
-    //@Column(name = "content")
-    //private Integer content;
+    @Column(name = "content")
+    private byte[] content;
 
     @Column(name = "storage_type", length = 2)
     private String storageType;
@@ -78,20 +69,16 @@ public class DocumentoIdentificazioneEntity {
     @Column(name = "storage_url", length = 255)
     private String storageUrl;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "token_nominativo")
+    private NominativoEntity nominativo;
+
     public Integer getTokenDocumentoIdentificazion() {
         return tokenDocumentoIdentificazion;
     }
 
     public void setTokenDocumentoIdentificazion(Integer tokenDocumentoIdentificazion) {
         this.tokenDocumentoIdentificazion = tokenDocumentoIdentificazion;
-    }
-
-    public Integer getTokenNominativo() {
-        return tokenNominativo;
-    }
-
-    public void setTokenNominativo(Integer tokenNominativo) {
-        this.tokenNominativo = tokenNominativo;
     }
 
     public String getTipoDocumentoIdentificazione() {
@@ -236,5 +223,21 @@ public class DocumentoIdentificazioneEntity {
 
     public void setStorageUrl(String storageUrl) {
         this.storageUrl = storageUrl;
+    }
+
+    public byte[] getContent() {
+        return content;
+    }
+
+    public void setContent(byte[] content) {
+        this.content = content;
+    }
+
+    public NominativoEntity getNominativo() {
+        return nominativo;
+    }
+
+    public void setNominativo(NominativoEntity nominativo) {
+        this.nominativo = nominativo;
     }
 }
