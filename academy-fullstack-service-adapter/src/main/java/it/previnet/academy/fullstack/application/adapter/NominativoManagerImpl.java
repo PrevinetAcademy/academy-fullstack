@@ -32,7 +32,11 @@ public class NominativoManagerImpl implements NominativoManager {
     public Nominativo save(Nominativo nominativo) {
         logger.info("called MANAGER save");
 
-        NominativoEntity nominativoEntity = nominativoRepository.findByToken(nominativo.getTokenNominativo());
+        NominativoEntity nominativoEntity = null;
+        if (nominativo.getTokenNominativo() != null) {
+            nominativoEntity = nominativoRepository.findByToken(nominativo.getTokenNominativo());
+        }
+
         NominativoEntity entityToSave = nominativoMapper.mapBeanToEntity(nominativo, nominativoEntity);
 
         if (nominativoEntity == null) {

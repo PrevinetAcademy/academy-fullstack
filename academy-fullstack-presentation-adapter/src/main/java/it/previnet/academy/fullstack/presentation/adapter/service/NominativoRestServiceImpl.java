@@ -1,7 +1,9 @@
 package it.previnet.academy.fullstack.presentation.adapter.service;
 
 import it.previnet.academy.fullstack.application.port.NominativoManager;
+import it.previnet.academy.fullstack.application.port.RecapitoNominativoManager;
 import it.previnet.academy.fullstack.bean.Nominativo;
+import it.previnet.academy.fullstack.bean.RecapitoNominativo;
 import it.previnet.academy.fullstack.presentation.port.service.NominativoRestService;
 import org.jboss.logging.Logger;
 
@@ -16,6 +18,9 @@ public class NominativoRestServiceImpl implements NominativoRestService {
     @Inject
     NominativoManager nominativoManager;
 
+    @Inject
+    RecapitoNominativoManager recapitoNominativoManager;
+
     @Override
     public List<Nominativo> fetch(String cognome, String nome, String tipoSesso) {
         logger.info("called REST SERVICE fetch");
@@ -26,5 +31,17 @@ public class NominativoRestServiceImpl implements NominativoRestService {
     public Nominativo save(Nominativo nominativo) {
         logger.info("called REST SERVICE save");
         return nominativoManager.save(nominativo);
+    }
+
+    @Override
+    public List<RecapitoNominativo> fetchRecapiti(Integer tokenNominativo) {
+        logger.info("called REST SERVICE fetchRecapiti");
+        return recapitoNominativoManager.fetch(tokenNominativo);
+    }
+
+    @Override
+    public RecapitoNominativo saveRecapito(Integer tokenNominativo, RecapitoNominativo recapitoNominativo) {
+        logger.info("called REST SERVICE saveRecapito");
+        return recapitoNominativoManager.save(tokenNominativo, recapitoNominativo);
     }
 }
