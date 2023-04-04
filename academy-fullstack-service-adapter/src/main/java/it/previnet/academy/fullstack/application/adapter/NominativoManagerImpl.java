@@ -22,9 +22,34 @@ public class NominativoManagerImpl implements NominativoManager {
     NominativoMapper nominativoMapper;
 
     @Override
-    public List<Nominativo> fetch(String cognome, String nome, String tipoSesso, boolean documento) {
+    public List<Nominativo> fetch(String cognome, String nome, String tipoSesso) {
         logger.info("called MANAGER fetch");
-        List<NominativoEntity> nominativoEntities = nominativoRepository.fetch(cognome, nome, tipoSesso, documento);
+        List<NominativoEntity> nominativoEntities = nominativoRepository.fetch(cognome, nome, tipoSesso);
         return nominativoMapper.mapEntitiesToBeans(nominativoEntities);
+    }
+
+    @Override
+    public Nominativo save(Nominativo nominativo) {
+        logger.info("called MANAGER save");
+
+        NominativoEntity nominativoEntity = nominativoRepository.findByToken(nominativo.getTokenNominativo());
+        NominativoEntity entityToSave = nominativoMapper.mapBeanToEntity(nominativo, nominativoEntity);
+
+        if (nominativoEntity == null) {
+            // per sicurezza si annullano i token (chiavi) per il persist
+            entityToSave.setTokenNominativo(null);
+            if (entityToSave.getRecapitoNominativo() != null) {
+                entityToSave.getRecapitoNominativo().forEach(r -> r.setTokenRecapitoNominativo(null));
+            }
+            if (entityToSave.getDocumentoIdentificazione() != null) {
+                entityToSave.getDocumentoIdentificazione().forEach(d -> d.setTokenDocumentoIdentificazion(null));
+            }
+
+            nominativoRepository.persist(entityToSave);
+        } else {
+            nominativoRepository.merge(entityToSave);
+        }
+
+        return nominativoMapper.mapEntityToBean(entityToSave);
     }
 }

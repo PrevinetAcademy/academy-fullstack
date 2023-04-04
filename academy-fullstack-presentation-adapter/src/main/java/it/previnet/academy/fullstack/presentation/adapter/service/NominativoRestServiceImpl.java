@@ -17,8 +17,14 @@ public class NominativoRestServiceImpl implements NominativoRestService {
     NominativoManager nominativoManager;
 
     @Override
-    public List<Nominativo> fetch(String cognome, String nome, String tipoSesso, boolean documento) {
+    public List<Nominativo> fetch(String cognome, String nome, String tipoSesso) {
         logger.info("called REST SERVICE fetch");
-        return nominativoManager.fetch(cognome, nome, tipoSesso, documento);
+        return nominativoManager.fetch(cognome, nome, tipoSesso);
+    }
+
+    @Override
+    public Nominativo save(Nominativo nominativo) {
+        logger.info("called REST SERVICE save");
+        return nominativoManager.save(nominativo);
     }
 }

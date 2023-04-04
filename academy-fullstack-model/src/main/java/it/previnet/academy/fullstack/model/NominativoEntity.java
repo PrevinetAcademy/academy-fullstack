@@ -17,7 +17,7 @@ import java.util.Set;
 public class NominativoEntity {
 
     @Id
-    @SequenceGenerator(name = "tokenNominativoGenerator", sequenceName = "nominativo_seq", allocationSize = 1)
+    @SequenceGenerator(name = "tokenNominativoGenerator", sequenceName = "nominativo_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tokenNominativoGenerator")
     @Column(name = "token_nominativo", nullable = false)
     private Integer tokenNominativo;

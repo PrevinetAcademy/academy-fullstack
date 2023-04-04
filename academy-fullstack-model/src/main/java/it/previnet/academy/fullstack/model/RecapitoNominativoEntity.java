@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 public class RecapitoNominativoEntity {
 
     @Id
-    @SequenceGenerator(name = "tokenRecapitoNominativoGenerator", sequenceName = "recapito_nominativo_seq", allocationSize = 1)
+    @SequenceGenerator(name = "tokenRecapitoNominativoGenerator", sequenceName = "recapito_nominativo_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tokenRecapitoNominativoGenerator")
     @Column(name = "token_recapito_nominativo", nullable = false)
     private Integer tokenRecapitoNominativo;

@@ -6,5 +6,7 @@ import java.util.List;
 
 public interface NominativoManager {
 
-    List<Nominativo> fetch(String cognome, String nome, String tipoSesso, boolean documento);
+    List<Nominativo> fetch(String cognome, String nome, String tipoSesso);
+
+    Nominativo save(Nominativo nominativo);
 }

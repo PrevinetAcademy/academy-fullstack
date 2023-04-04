@@ -81,6 +81,7 @@ public class NominativoMapper extends AbstractMapper<NominativoEntity, Nominativ
         }
 
         entity.setTokenNominativo(bean.getTokenNominativo());
+        entity.setTipoNominativo("1");
         entity.setCodFiscale(bean.getCodFiscale());
         entity.setCodPartitaIva(bean.getCodPartitaIva());
         entity.setDenCognome(bean.getDenCognome());
@@ -105,10 +106,18 @@ public class NominativoMapper extends AbstractMapper<NominativoEntity, Nominativ
         entity.setDataFirmaPrivacy(bean.getDataFirmaPrivacy());
 
         List<RecapitoNominativoEntity> recapitoNominativoEntities = recapitoNominativoMapper.mapBeansToEntities(bean.getRecapitoNominativo());
-        entity.setRecapitoNominativo(new HashSet<>(recapitoNominativoEntities));
+        if (recapitoNominativoEntities != null) {
+            entity.setRecapitoNominativo(new HashSet<>(recapitoNominativoEntities));
+        } else {
+            entity.setRecapitoNominativo(null);
+        }
 
         List<DocumentoIdentificazioneEntity> documentoIdentificazioneEntities = documentoIdentificazioneMapper.mapBeansToEntities(bean.getDocumentoIdentificazione());
-        entity.setDocumentoIdentificazione(new HashSet<>(documentoIdentificazioneEntities));
+        if (documentoIdentificazioneEntities != null) {
+            entity.setDocumentoIdentificazione(new HashSet<>(documentoIdentificazioneEntities));
+        } else {
+            entity.setDocumentoIdentificazione(null);
+        }
 
         return entity;
     }

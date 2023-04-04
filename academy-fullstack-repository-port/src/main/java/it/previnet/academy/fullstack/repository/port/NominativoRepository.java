@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface NominativoRepository extends AbstractRepository<NominativoEntity> {
 
-    List<NominativoEntity> fetch(String cognome, String nome, String tipoSesso, boolean documento);
+    List<NominativoEntity> fetch(String cognome, String nome, String tipoSesso);
 }

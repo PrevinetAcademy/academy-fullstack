@@ -11,7 +11,7 @@ import java.util.List;
 @ApplicationScoped
 public class BeanUtil {
 
-    public Long getTokenFromBean(WithToken withTokenBean){
+    public Integer getTokenFromBean(WithToken withTokenBean){
         if (withTokenBean==null){
             return null;
         }

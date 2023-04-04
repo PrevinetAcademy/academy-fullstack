@@ -15,6 +15,9 @@ public abstract class AbstractMapper<E, B> {
 	public abstract E mapBeanToEntity(B bean, E entity);
 	
 	public List<B> mapEntitiesToBeans(Collection<E> entityCollection) {
+		if (entityCollection == null) {
+			return null;
+		}
 
 		List<B> beans = new ArrayList<B>();
 
@@ -26,6 +29,9 @@ public abstract class AbstractMapper<E, B> {
 	}
 	
     public List<E> mapBeansToEntities(Collection<B> beanCollection) {
+		if (beanCollection == null) {
+			return null;
+		}
 
         List<E> entities = new ArrayList<E>();
 
