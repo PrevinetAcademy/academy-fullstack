@@ -2,12 +2,15 @@ package it.previnet.academy.fullstack.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Table(name = "nominativo")
@@ -447,6 +450,12 @@ public class NominativoEntity {
 
     @Column(name = "ind_stato_fea", length = 2)
     private String indStatoFea;
+
+    @OneToMany(mappedBy = "nominativo", fetch = FetchType.LAZY)
+    private Set<RecapitoNominativoEntity> recapitoNominativo;
+
+    @OneToMany(mappedBy = "nominativo", fetch = FetchType.LAZY)
+    private Set<DocumentoIdentificazioneEntity> documentoIdentificazione;
 
     public Integer getTokenNominativo() {
         return tokenNominativo;
@@ -1598,5 +1607,21 @@ public class NominativoEntity {
 
     public void setIndStatoFea(String indStatoFea) {
         this.indStatoFea = indStatoFea;
+    }
+
+    public Set<RecapitoNominativoEntity> getRecapitoNominativo() {
+        return recapitoNominativo;
+    }
+
+    public void setRecapitoNominativo(Set<RecapitoNominativoEntity> recapitoNominativo) {
+        this.recapitoNominativo = recapitoNominativo;
+    }
+
+    public Set<DocumentoIdentificazioneEntity> getDocumentoIdentificazione() {
+        return documentoIdentificazione;
+    }
+
+    public void setDocumentoIdentificazione(Set<DocumentoIdentificazioneEntity> documentoIdentificazione) {
+        this.documentoIdentificazione = documentoIdentificazione;
     }
 }
