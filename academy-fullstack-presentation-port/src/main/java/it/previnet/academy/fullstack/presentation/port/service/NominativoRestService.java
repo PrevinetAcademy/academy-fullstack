@@ -1,5 +1,6 @@
 package it.previnet.academy.fullstack.presentation.port.service;
 
+import it.previnet.academy.fullstack.bean.DocumentoIdentificazione;
 import it.previnet.academy.fullstack.bean.Nominativo;
 import it.previnet.academy.fullstack.bean.RecapitoNominativo;
 
@@ -37,4 +38,26 @@ public interface NominativoRestService {
     @Consumes(MediaType.APPLICATION_JSON + ";charset=UTF-8")
     @Produces(MediaType.APPLICATION_JSON + ";charset=UTF-8")
     RecapitoNominativo saveRecapito(@PathParam("tokenNominativo") Integer tokenNominativo, RecapitoNominativo recapitoNominativo);
+
+    @GET
+    @Path("documento/{tokenNominativo}")
+    @Produces(MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    List<DocumentoIdentificazione> fetchDocumenti(@PathParam("tokenNominativo") Integer tokenNominativo);
+
+    @POST
+    @Path("documento/{tokenNominativo}")
+    @Consumes(MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    @Produces(MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    DocumentoIdentificazione saveDocumento(@PathParam("tokenNominativo") Integer tokenNominativo, DocumentoIdentificazione documentoIdentificazione);
+
+    @POST
+    @Path("documento/upload/{tokenDocumento}")
+    @Consumes({"image/*"})
+    @Produces(MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    DocumentoIdentificazione uploadDocumento(@PathParam("tokenDocumento") Integer tokenDocumento, byte[] imageBytes);
+
+    @GET
+    @Path("documento/get/{tokenDocumento}")
+    @Produces({"image/png", "image/jpg"})
+    byte[] getDocumento(@PathParam("tokenDocumento") Integer tokenDocumento);
 }
