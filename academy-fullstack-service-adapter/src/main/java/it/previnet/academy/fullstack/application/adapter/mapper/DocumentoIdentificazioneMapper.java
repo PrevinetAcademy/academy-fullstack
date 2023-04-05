@@ -28,7 +28,6 @@ public class DocumentoIdentificazioneMapper extends AbstractMapper<DocumentoIden
         bean.setCodDocumentoIdentificazione(entity.getCodDocumentoIdentificazione());
         bean.setCodNazione(entity.getCodNazione());
         bean.setCodSiglaProvinciaRilascio(entity.getCodSiglaProvinciaRilascio());
-        bean.setContent(entity.getContent());
         bean.setDataFine(entity.getDataFine());
         bean.setDataInizio(entity.getDataInizio());
         bean.setDataRilascio(entity.getDataRilascio());
@@ -62,7 +61,6 @@ public class DocumentoIdentificazioneMapper extends AbstractMapper<DocumentoIden
         entity.setCodDocumentoIdentificazione(bean.getCodDocumentoIdentificazione());
         entity.setCodNazione(bean.getCodNazione());
         entity.setCodSiglaProvinciaRilascio(bean.getCodSiglaProvinciaRilascio());
-        entity.setContent(bean.getContent());
         entity.setDataFine(bean.getDataFine());
         entity.setDataInizio(bean.getDataInizio());
         entity.setDataRilascio(bean.getDataRilascio());

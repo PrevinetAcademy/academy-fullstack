@@ -23,7 +23,6 @@ public class DocumentoIdentificazione {
     private String codCabRilascio;
     private Integer tokenNominativoPolizza;
     private String barcode;
-    private byte[] content;
 
     public Integer getTokenDocumentoIdentificazion() {
         return tokenDocumentoIdentificazion;
@@ -167,13 +166,5 @@ public class DocumentoIdentificazione {
 
     public void setBarcode(String barcode) {
         this.barcode = barcode;
-    }
-
-    public byte[] getContent() {
-        return content;
-    }
-
-    public void setContent(byte[] content) {
-        this.content = content;
     }
 }
