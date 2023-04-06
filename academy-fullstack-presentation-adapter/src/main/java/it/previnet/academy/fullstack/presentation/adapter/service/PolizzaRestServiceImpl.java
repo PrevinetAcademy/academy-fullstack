@@ -1,6 +1,7 @@
 package it.previnet.academy.fullstack.presentation.adapter.service;
 
 import it.previnet.academy.fullstack.application.port.PolizzaManager;
+import it.previnet.academy.fullstack.bean.Operazione;
 import it.previnet.academy.fullstack.bean.Polizza;
 import it.previnet.academy.fullstack.presentation.port.service.PolizzaRestService;
 import org.jboss.logging.Logger;
@@ -17,8 +18,14 @@ public class PolizzaRestServiceImpl implements PolizzaRestService {
     PolizzaManager polizzaManager;
 
     @Override
-    public List<Polizza> fetch(String indStatoPolizza) {
+    public List<Polizza> fetch(String indStatoPolizza, String numPolizza) {
         logger.info("called REST SERVICE fetch");
-        return polizzaManager.fetch(indStatoPolizza);
+        return polizzaManager.fetch(indStatoPolizza, numPolizza);
+    }
+
+    @Override
+    public List<Operazione> fetchOperazioni(Integer tokenPolizza) {
+        logger.info("called REST SERVICE fetchOperazioni");
+        return polizzaManager.fetchOperazioni(tokenPolizza);
     }
 }

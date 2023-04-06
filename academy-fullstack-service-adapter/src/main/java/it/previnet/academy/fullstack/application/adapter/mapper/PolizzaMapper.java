@@ -1,12 +1,19 @@
 package it.previnet.academy.fullstack.application.adapter.mapper;
 
 import it.previnet.academy.fullstack.bean.Polizza;
+import it.previnet.academy.fullstack.model.OperazioneEntity;
 import it.previnet.academy.fullstack.model.PolizzaEntity;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import java.util.HashSet;
+import java.util.List;
 
 @ApplicationScoped
 public class PolizzaMapper extends AbstractMapper<PolizzaEntity, Polizza> {
+
+    @Inject
+    OperazioneMapper operazioneMapper;
 
     @Override
     public Polizza mapEntityToBean(PolizzaEntity entity) {
@@ -32,6 +39,7 @@ public class PolizzaMapper extends AbstractMapper<PolizzaEntity, Polizza> {
         bean.setTipoRateazione(entity.getTipoRateazione());
         bean.setCodNumProposta(entity.getCodNumProposta());
         bean.setDataEmissione(entity.getDataEmissione());
+        bean.setOperazione(operazioneMapper.mapEntitiesToBeans(entity.getOperazione()));
 
         return bean;
     }
@@ -60,6 +68,13 @@ public class PolizzaMapper extends AbstractMapper<PolizzaEntity, Polizza> {
         entity.setTipoRateazione(bean.getTipoRateazione());
         entity.setCodNumProposta(bean.getCodNumProposta());
         entity.setDataEmissione(bean.getDataEmissione());
+
+        List<OperazioneEntity> operazioneEntities = operazioneMapper.mapBeansToEntities(bean.getOperazione());
+        if (operazioneEntities != null) {
+            entity.setOperazione(new HashSet<>(operazioneEntities));
+        } else {
+            entity.setOperazione(null);
+        }
 
         return entity;
     }

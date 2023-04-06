@@ -1,9 +1,13 @@
 package it.previnet.academy.fullstack.application.adapter;
 
+import it.previnet.academy.fullstack.application.adapter.mapper.OperazioneMapper;
 import it.previnet.academy.fullstack.application.adapter.mapper.PolizzaMapper;
 import it.previnet.academy.fullstack.application.port.PolizzaManager;
+import it.previnet.academy.fullstack.bean.Operazione;
 import it.previnet.academy.fullstack.bean.Polizza;
+import it.previnet.academy.fullstack.model.OperazioneEntity;
 import it.previnet.academy.fullstack.model.PolizzaEntity;
+import it.previnet.academy.fullstack.repository.port.OperazioneRepository;
 import it.previnet.academy.fullstack.repository.port.PolizzaRepository;
 import org.jboss.logging.Logger;
 
@@ -21,14 +25,28 @@ public class PolizzaManagerImpl implements PolizzaManager {
     @Inject
     PolizzaMapper polizzaMapper;
 
+    @Inject
+    OperazioneRepository operazioneRepository;
+
+    @Inject
+    OperazioneMapper operazioneMapper;
+
     @Override
-    public List<Polizza> fetch(String indStatoPolizza) {
+    public List<Polizza> fetch(String indStatoPolizza, String numPolizza) {
         logger.info("called MANAGER fetch");
 
-        List<PolizzaEntity> polizzaEntities = polizzaRepository.fetch(indStatoPolizza);
+        List<PolizzaEntity> polizzaEntities = polizzaRepository.fetch(indStatoPolizza, numPolizza);
 
-        logger.info("repository fetc result size: " + polizzaEntities.size());
+        logger.info("repository fetch result size: " + polizzaEntities.size());
 
         return polizzaMapper.mapEntitiesToBeans(polizzaEntities);
+    }
+
+    @Override
+    public List<Operazione> fetchOperazioni(Integer tokenPolizza) {
+        logger.info("called MANAGER fetchOperazioni");
+
+        List<OperazioneEntity> operazioneEntities = operazioneRepository.fetch(tokenPolizza);
+        return operazioneMapper.mapEntitiesToBeans(operazioneEntities);
     }
 }

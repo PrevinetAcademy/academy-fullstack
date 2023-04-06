@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface PolizzaRepository extends AbstractRepository<PolizzaEntity> {
 
-    List<PolizzaEntity> fetch(String indStatoPolizza);
+    List<PolizzaEntity> fetch(String indStatoPolizza, String numPolizza);
 }
