@@ -191,7 +191,7 @@ public class PolizzaEntity {
     @Column(name = "data_edizione_cga")
     private LocalDateTime dataEdizioneCga;
 
-    @OneToMany(mappedBy = "operazione", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "polizza", fetch = FetchType.LAZY)
     private Set<OperazioneEntity> operazione;
 
     public Integer getTokenPolizza() {

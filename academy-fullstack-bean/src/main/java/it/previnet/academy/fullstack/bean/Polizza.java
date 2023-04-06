@@ -1,6 +1,7 @@
 package it.previnet.academy.fullstack.bean;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Polizza {
 
@@ -13,6 +14,7 @@ public class Polizza {
     private String tipoRateazione;
     private String codNumProposta;
     private LocalDateTime dataEmissione;
+    private List<Operazione> operazione;
 
     public Integer getTokenPolizza() {
         return tokenPolizza;
@@ -84,5 +86,13 @@ public class Polizza {
 
     public void setDataEmissione(LocalDateTime dataEmissione) {
         this.dataEmissione = dataEmissione;
+    }
+
+    public List<Operazione> getOperazione() {
+        return operazione;
+    }
+
+    public void setOperazione(List<Operazione> operazione) {
+        this.operazione = operazione;
     }
 }

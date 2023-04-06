@@ -15,7 +15,7 @@ public class PolizzaRepositoryImpl extends AbstractRepositoryImpl<PolizzaEntity>
     private static final Logger logger = Logger.getLogger(PolizzaRepositoryImpl.class);
 
     @Override
-    public List<PolizzaEntity> fetch(String indStatoPolizza) {
+    public List<PolizzaEntity> fetch(String indStatoPolizza, String numPolizza) {
         logger.info("called REPOSITORY fetch");
 
         Map<String, Object> parameters = new HashMap<>();
@@ -23,6 +23,10 @@ public class PolizzaRepositoryImpl extends AbstractRepositoryImpl<PolizzaEntity>
         if (indStatoPolizza != null && !indStatoPolizza.isEmpty()) {
             strQuery.append("AND p.indStatoPolizza = :stato");
             parameters.put("stato", indStatoPolizza);
+        }
+        if (numPolizza != null) {
+            strQuery.append("AND p.numPolizza = :numPolizza");
+            parameters.put("numPolizza", numPolizza);
         }
 
         TypedQuery<PolizzaEntity> query = this.getEntityManager().createQuery(strQuery.toString(), PolizzaEntity.class);
