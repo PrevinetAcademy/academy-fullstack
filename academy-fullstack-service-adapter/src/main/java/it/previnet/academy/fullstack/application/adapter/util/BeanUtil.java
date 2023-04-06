@@ -19,12 +19,10 @@ public class BeanUtil {
     }
 
     public List<Field> getFieldAnnotatedWith(Class<?> beanClass, Class<? extends Annotation> annotation) {
-        List<Field> result = new ArrayList<Field>();
+        List<Field> result = new ArrayList<>();
 
         Field[] fields = beanClass.getDeclaredFields();
-        for (int i = 0; i < fields.length; i++) {
-            Field field = fields[i];
-
+        for (Field field : fields) {
             if (field.isAnnotationPresent(annotation)) {
                 result.add(field);
             }
