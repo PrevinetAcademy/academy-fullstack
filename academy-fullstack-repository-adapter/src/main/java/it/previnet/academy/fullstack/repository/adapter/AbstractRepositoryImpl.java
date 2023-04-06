@@ -15,12 +15,12 @@ public abstract class AbstractRepositoryImpl<T> implements AbstractRepository<T>
     private final Class<T> entityType;
 
     @SuppressWarnings({"unchecked", "rawtypes"})
-    public AbstractRepositoryImpl(){
-        Class clazz= getClass();
-        while(!clazz.getSuperclass().getName().equals(AbstractRepositoryImpl.class.getName())){
-            clazz= clazz.getSuperclass();
+    public AbstractRepositoryImpl() {
+        Class clazz = getClass();
+        while (!clazz.getSuperclass().getName().equals(AbstractRepositoryImpl.class.getName())) {
+            clazz = clazz.getSuperclass();
         }
-        entityType= (Class<T>) ((ParameterizedType) clazz.getGenericSuperclass()).getActualTypeArguments()[0];
+        entityType = (Class<T>) ((ParameterizedType) clazz.getGenericSuperclass()).getActualTypeArguments()[0];
     }
 
     @Override
@@ -46,7 +46,7 @@ public abstract class AbstractRepositoryImpl<T> implements AbstractRepository<T>
     }
 
     @Override
-    public void flush(){
+    public void flush() {
         getEntityManager().flush();
     }
 
