@@ -68,7 +68,7 @@
                                 </goals>
                                 <phase>initialize</phase>
                                 <configuration>
-                                    <executable>npm</executable>
+                                    <executable>pnpm</executable>
                                     <arguments>
                                         <argument>install</argument>
                                     </arguments>
@@ -87,7 +87,7 @@
                                         <VUE_APP_NAMECLIENTE>${project.name-cliente}</VUE_APP_NAMECLIENTE>
                                     </environmentVariables>
                                     -->
-                                    <executable>npm</executable>
+                                    <executable>pnpm</executable>
                                     <arguments>
                                         <argument>run</argument>
                                         <argument>build</argument>
