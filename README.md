@@ -8,4 +8,4 @@ Nella cartella `runConfigurations` sono presenti due file XML con i preset per l
 Nella cartella `data` sono presenti:
 
 * il file `ACADEMY.postman_collection.json`, descrittore della collection di Postman con le request già preparate
-* alcune immagini di documenti di identità _fake_
+* immagini di documenti di identità _fake_
