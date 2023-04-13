@@ -366,6 +366,111 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "TIPO SESSO fetch",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/academy-fullstack/api/nominativo/tipo/sesso",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"academy-fullstack",
+						"api",
+						"nominativo",
+						"tipo",
+						"sesso"
+					],
+					"query": [
+						{
+							"key": "nome",
+							"value": "MARIO",
+							"disabled": true
+						},
+						{
+							"key": "tipoSesso",
+							"value": "M",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TIPO RECAPITO fetch",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/academy-fullstack/api/nominativo/tipo/recapito",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"academy-fullstack",
+						"api",
+						"nominativo",
+						"tipo",
+						"recapito"
+					],
+					"query": [
+						{
+							"key": "nome",
+							"value": "MARIO",
+							"disabled": true
+						},
+						{
+							"key": "tipoSesso",
+							"value": "M",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TIPO DOCUMENTO fetch",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/academy-fullstack/api/nominativo/tipo/documento",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"academy-fullstack",
+						"api",
+						"nominativo",
+						"tipo",
+						"documento"
+					],
+					"query": [
+						{
+							"key": "nome",
+							"value": "MARIO",
+							"disabled": true
+						},
+						{
+							"key": "tipoSesso",
+							"value": "M",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
