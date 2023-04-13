@@ -8,6 +8,9 @@ import org.jboss.logging.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @ApplicationScoped
@@ -27,5 +30,19 @@ public class PolizzaRestServiceImpl implements PolizzaRestService {
     public List<Operazione> fetchOperazioni(Integer tokenPolizza) {
         logger.info("called REST SERVICE fetchOperazioni");
         return polizzaManager.fetchOperazioni(tokenPolizza);
+    }
+
+    @Override
+    public List<Polizza> esercizio1(String dataDecorrenza) {
+        logger.info("called REST SERVICE esercizio1");
+        LocalDate parse = LocalDate.parse(dataDecorrenza, DateTimeFormatter.ISO_DATE);
+        return polizzaManager.esercizio1(parse.atStartOfDay());
+    }
+
+    @Override
+    public List<Polizza> esercizio2(String dataDecorrenza) {
+        logger.info("called REST SERVICE esercizio2");
+        LocalDate parse = LocalDate.parse(dataDecorrenza, DateTimeFormatter.ISO_DATE);
+        return polizzaManager.esercizio2(parse.atStartOfDay());
     }
 }
