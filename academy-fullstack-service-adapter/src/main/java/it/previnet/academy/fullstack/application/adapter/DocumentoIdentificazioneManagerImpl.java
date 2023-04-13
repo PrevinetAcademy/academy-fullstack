@@ -1,10 +1,13 @@
 package it.previnet.academy.fullstack.application.adapter;
 
 import it.previnet.academy.fullstack.application.adapter.mapper.DocumentoIdentificazioneMapper;
+import it.previnet.academy.fullstack.application.adapter.mapper.TipoDocumentoIdentificazioneMapper;
 import it.previnet.academy.fullstack.application.port.DocumentoIdentificazioneManager;
 import it.previnet.academy.fullstack.bean.DocumentoIdentificazione;
+import it.previnet.academy.fullstack.bean.TipoDocumentoIdentificazione;
 import it.previnet.academy.fullstack.model.DocumentoIdentificazioneEntity;
 import it.previnet.academy.fullstack.model.NominativoEntity;
+import it.previnet.academy.fullstack.model.TipoDocumentoIdentificazioneEntity;
 import it.previnet.academy.fullstack.repository.port.DocumentoIdentificazioneRepository;
 import it.previnet.academy.fullstack.repository.port.NominativoRepository;
 import org.jboss.logging.Logger;
@@ -25,6 +28,9 @@ public class DocumentoIdentificazioneManagerImpl implements DocumentoIdentificaz
 
     @Inject
     NominativoRepository nominativoRepository;
+
+    @Inject
+    TipoDocumentoIdentificazioneMapper tipoDocumentoIdentificazioneMapper;
 
     @Override
     public List<DocumentoIdentificazione> fetch(Integer tokenNominativo) {
@@ -92,5 +98,11 @@ public class DocumentoIdentificazioneManagerImpl implements DocumentoIdentificaz
         }
 
         return documentoIdentificazioneEntity.getContent();
+    }
+
+    @Override
+    public List<TipoDocumentoIdentificazione> fetchTipoDocumento() {
+        List<TipoDocumentoIdentificazioneEntity> tipoDocumentoIdentificazioneEntities = documentoIdentificazioneRepository.fetchTipoDocumento();
+        return tipoDocumentoIdentificazioneMapper.mapEntitiesToBeans(tipoDocumentoIdentificazioneEntities);
     }
 }

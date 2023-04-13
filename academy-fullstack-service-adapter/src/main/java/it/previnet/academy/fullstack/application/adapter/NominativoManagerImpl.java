@@ -1,9 +1,12 @@
 package it.previnet.academy.fullstack.application.adapter;
 
 import it.previnet.academy.fullstack.application.adapter.mapper.NominativoMapper;
+import it.previnet.academy.fullstack.application.adapter.mapper.TipoSessoMapper;
 import it.previnet.academy.fullstack.application.port.NominativoManager;
 import it.previnet.academy.fullstack.bean.Nominativo;
+import it.previnet.academy.fullstack.bean.TipoSesso;
 import it.previnet.academy.fullstack.model.NominativoEntity;
+import it.previnet.academy.fullstack.model.TipoSessoEntity;
 import it.previnet.academy.fullstack.repository.port.NominativoRepository;
 import org.jboss.logging.Logger;
 
@@ -20,6 +23,9 @@ public class NominativoManagerImpl implements NominativoManager {
 
     @Inject
     NominativoMapper nominativoMapper;
+
+    @Inject
+    TipoSessoMapper tipoSessoMapper;
 
     @Override
     public List<Nominativo> fetch(String cognome, String nome, String tipoSesso) {
@@ -55,5 +61,11 @@ public class NominativoManagerImpl implements NominativoManager {
         }
 
         return nominativoMapper.mapEntityToBean(entityToSave);
+    }
+
+    @Override
+    public List<TipoSesso> fetchTipoSesso() {
+        List<TipoSessoEntity> tipoSessoEntities = nominativoRepository.fetchTipoSesso();
+        return tipoSessoMapper.mapEntitiesToBeans(tipoSessoEntities);
     }
 }

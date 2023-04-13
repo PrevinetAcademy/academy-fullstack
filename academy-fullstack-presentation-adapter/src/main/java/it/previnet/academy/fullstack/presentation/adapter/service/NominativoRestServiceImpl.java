@@ -6,6 +6,9 @@ import it.previnet.academy.fullstack.application.port.RecapitoNominativoManager;
 import it.previnet.academy.fullstack.bean.DocumentoIdentificazione;
 import it.previnet.academy.fullstack.bean.Nominativo;
 import it.previnet.academy.fullstack.bean.RecapitoNominativo;
+import it.previnet.academy.fullstack.bean.TipoDocumentoIdentificazione;
+import it.previnet.academy.fullstack.bean.TipoRecapitoNominativo;
+import it.previnet.academy.fullstack.bean.TipoSesso;
 import it.previnet.academy.fullstack.presentation.port.service.NominativoRestService;
 import org.jboss.logging.Logger;
 
@@ -72,5 +75,20 @@ public class NominativoRestServiceImpl implements NominativoRestService {
     public byte[] getDocumento(Integer tokenDocumento) {
         logger.info("called REST SERVICE getDocumento");
         return documentoIdentificazioneManager.getContent(tokenDocumento);
+    }
+
+    @Override
+    public List<TipoSesso> fetchTipoSesso() {
+        return nominativoManager.fetchTipoSesso();
+    }
+
+    @Override
+    public List<TipoRecapitoNominativo> fetchTipoRecapito() {
+        return recapitoNominativoManager.fetchTipoRecapito();
+    }
+
+    @Override
+    public List<TipoDocumentoIdentificazione> fetchTipoDocumento() {
+        return documentoIdentificazioneManager.fetchTipoDocumento();
     }
 }

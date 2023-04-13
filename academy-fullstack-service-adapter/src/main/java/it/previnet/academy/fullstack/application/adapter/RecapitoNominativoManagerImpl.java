@@ -1,11 +1,14 @@
 package it.previnet.academy.fullstack.application.adapter;
 
 import it.previnet.academy.fullstack.application.adapter.mapper.RecapitoNominativoMapper;
+import it.previnet.academy.fullstack.application.adapter.mapper.TipoRecapitoNominativoMapper;
 import it.previnet.academy.fullstack.application.port.RecapitoNominativoManager;
 import it.previnet.academy.fullstack.bean.Nominativo;
 import it.previnet.academy.fullstack.bean.RecapitoNominativo;
+import it.previnet.academy.fullstack.bean.TipoRecapitoNominativo;
 import it.previnet.academy.fullstack.model.NominativoEntity;
 import it.previnet.academy.fullstack.model.RecapitoNominativoEntity;
+import it.previnet.academy.fullstack.model.TipoRecapitoNominativoEntity;
 import it.previnet.academy.fullstack.repository.port.NominativoRepository;
 import it.previnet.academy.fullstack.repository.port.RecapitoNominativoRepository;
 import org.jboss.logging.Logger;
@@ -26,6 +29,9 @@ public class RecapitoNominativoManagerImpl implements RecapitoNominativoManager 
 
     @Inject
     RecapitoNominativoMapper recapitoNominativoMapper;
+
+    @Inject
+    TipoRecapitoNominativoMapper tipoRecapitoNominativoMapper;
 
     @Override
     public List<RecapitoNominativo> fetch(Integer tokenNominativo) {
@@ -71,5 +77,11 @@ public class RecapitoNominativoManagerImpl implements RecapitoNominativoManager 
         }
 
         return recapitoNominativoMapper.mapEntityToBean(entityToSave);
+    }
+
+    @Override
+    public List<TipoRecapitoNominativo> fetchTipoRecapito() {
+        List<TipoRecapitoNominativoEntity> tipoRecapitoNominativoEntities = recapitoNominativoRepository.fetchTipoRecapito();
+        return tipoRecapitoNominativoMapper.mapEntitiesToBeans(tipoRecapitoNominativoEntities);
     }
 }

@@ -1,6 +1,7 @@
 package it.previnet.academy.fullstack.application.port;
 
 import it.previnet.academy.fullstack.bean.DocumentoIdentificazione;
+import it.previnet.academy.fullstack.bean.TipoDocumentoIdentificazione;
 
 import java.util.List;
 
@@ -13,4 +14,6 @@ public interface DocumentoIdentificazioneManager {
     DocumentoIdentificazione upload(Integer tokenDocumento, byte[] bytes);
 
     byte[] getContent(Integer tokenDocumento);
+
+    List<TipoDocumentoIdentificazione> fetchTipoDocumento();
 }
