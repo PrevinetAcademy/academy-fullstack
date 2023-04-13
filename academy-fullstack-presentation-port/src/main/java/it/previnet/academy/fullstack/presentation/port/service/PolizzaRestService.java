@@ -23,4 +23,22 @@ public interface PolizzaRestService {
     @Path("operazione/fetch/{tokenPolizza}")
     @Produces(MediaType.APPLICATION_JSON + ";charset=UTF-8")
     List<Operazione> fetchOperazioni(@PathParam("tokenPolizza") Integer tokenPolizza);
+
+    /*
+     * ESERCIZIO 1
+     * Selezione delle polizze la cui data decorrenza polizza sia superiore al parametro di filtro
+     */
+    @GET
+    @Path("esercizio1")
+    @Produces(MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    List<Polizza> esercizio1(@QueryParam("dataDecorrenza") String dataDecorrenza);
+
+    /*
+     * ESERCIZIO 2
+     * Selezione delle polizze con un'operazione di sottoscrizione ('0')  la cui data decorrenza sia superiore al parametro di filtro
+     */
+    @GET
+    @Path("esercizio2")
+    @Produces(MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    List<Polizza> esercizio2(@QueryParam("dataDecorrenza") String dataDecorrenza);
 }

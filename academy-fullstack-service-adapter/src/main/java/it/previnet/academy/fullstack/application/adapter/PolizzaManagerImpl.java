@@ -13,6 +13,7 @@ import org.jboss.logging.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @ApplicationScoped
@@ -48,5 +49,21 @@ public class PolizzaManagerImpl implements PolizzaManager {
 
         List<OperazioneEntity> operazioneEntities = operazioneRepository.fetch(tokenPolizza);
         return operazioneMapper.mapEntitiesToBeans(operazioneEntities);
+    }
+
+    @Override
+    public List<Polizza> esercizio1(LocalDateTime dataDecorrenza) {
+        logger.info("called MANAGER esercizio1");
+
+        List<PolizzaEntity> polizzaEntities = polizzaRepository.esercizio1(dataDecorrenza);
+        return polizzaMapper.mapEntitiesToBeans(polizzaEntities);
+    }
+
+    @Override
+    public List<Polizza> esercizio2(LocalDateTime dataDecorrenza) {
+        logger.info("called MANAGER esercizio2");
+
+        List<PolizzaEntity> polizzaEntities = polizzaRepository.esercizio2(dataDecorrenza);
+        return polizzaMapper.mapEntitiesToBeans(polizzaEntities);
     }
 }
