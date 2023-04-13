@@ -150,7 +150,11 @@ export default Vue.extend({
     };
   },
   mounted() {
-    axios.get(`${SERVICE_BASE_URL}/anagrafica`)
+    axios.get(`${SERVICE_BASE_URL}/nominativo/fetch`, {
+      params: {
+        cognome: 'ZHJJZLT'
+      }
+    })
       .then((response) => {
         this.items = response.data;
         this.totalRows = response.data.length;
