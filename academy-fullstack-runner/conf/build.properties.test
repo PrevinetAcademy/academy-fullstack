@@ -1,3 +1,4 @@
-ext.quarkus.datasource.jdbc.url=jdbc:postgresql://tpcom1.previdom.previnet.it:5432/umanacademy
+
+ext.quarkus.datasource.jdbc.url=jdbc:postgresql://localhost:5432/umanacademy
 ext.quarkus.datasource.username=xumanacademy
-ext.quarkus.datasource.password=umanacademyx
+ext.quarkus.datasource.password=password

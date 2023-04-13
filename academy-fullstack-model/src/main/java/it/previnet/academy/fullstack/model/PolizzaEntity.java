@@ -1,13 +1,8 @@
 package it.previnet.academy.fullstack.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Table(name = "polizza")
@@ -195,6 +190,9 @@ public class PolizzaEntity {
 
     @Column(name = "data_edizione_cga")
     private LocalDateTime dataEdizioneCga;
+
+    @OneToMany(mappedBy = "polizza", fetch = FetchType.LAZY)
+    private Set<OperazioneEntity> operazione;
 
     public Integer getTokenPolizza() {
         return tokenPolizza;
@@ -674,5 +672,13 @@ public class PolizzaEntity {
 
     public void setDataEdizioneCga(LocalDateTime dataEdizioneCga) {
         this.dataEdizioneCga = dataEdizioneCga;
+    }
+
+    public Set<OperazioneEntity> getOperazione() {
+        return operazione;
+    }
+
+    public void setOperazione(Set<OperazioneEntity> operazione) {
+        this.operazione = operazione;
     }
 }
