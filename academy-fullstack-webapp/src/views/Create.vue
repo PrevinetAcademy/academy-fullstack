@@ -52,8 +52,8 @@
                       <b-form-select 
                         v-model="form.tipoSesso"
                         :options="tipoSessoOptions"
-                        text-field="description"
-                        value-field="code"
+                        text-field="denSesso"
+                        value-field="tipoSesso"
                         :state="form.tipoSesso ? valid : null"
                       ></b-form-select>
                       <b-form-invalid-feedback>{{ errors[0] }}</b-form-invalid-feedback>
@@ -120,8 +120,8 @@
                       <b-form-select
                         v-model="form.tipoDocumentoIdentificazione"
                         :options="tipoDocumentoOptions"
-                        text-field="description"
-                        value-field="code"
+                        text-field="denDocumentoIdentificazione"
+                        value-field="tipoDocumentoIdentificazione"
                         :state="form.tipoDocumentoIdentificazione ? valid : null"
                       ></b-form-select>
                       <b-form-invalid-feedback>{{ errors[0] }}</b-form-invalid-feedback>
@@ -144,8 +144,8 @@
                       <b-form-select
                         v-model="form.tipoRecapitoNominativo"
                         :options="tipoRecapitoOptions"
-                        text-field="description"
-                        value-field="code"
+                        text-field="denRecapitoNominativo"
+                        value-field="tipoRecapitoNominativo"
                         :state="form.tipoRecapitoNominativo ? valid : null"
                       ></b-form-select>
                       <b-form-invalid-feedback>{{ errors[0] }}</b-form-invalid-feedback>
@@ -234,7 +234,7 @@ export default Vue.extend({
       form.append('file', this.file);
       form.append('data', JSON.stringify(this.form));
 
-      axios.post(`${SERVICE_BASE_URL}/anagrafica`, form)
+      axios.post(`${SERVICE_BASE_URL}/nominativo/save`, form)
         .then((response) => {
           console.log(response);
           this.$bvToast.toast("Anagrafica inserita con successo", {
@@ -256,29 +256,29 @@ export default Vue.extend({
         })
     },
     getTipoSesso() {
-      axios.get(`${SERVICE_BASE_URL}/tipo/sesso?persona=${this.personType}`)
+      axios.get(`${SERVICE_BASE_URL}/nominativo/tipo/sesso?persona=${this.personType}`)
         .then((response) => {
           this.tipoSessoOptions = response.data;
           if (response.data.length === 1) {
-            this.form.tipoSesso = this.tipoSessoOptions[0].code;
+            this.form.tipoSesso = this.tipoSessoOptions[0].tipoSesso;
           }
         });
     },
     getTipoRecapito() {
-      axios.get(`${SERVICE_BASE_URL}/tipo/recapito?persona=${this.personType}`)
+      axios.get(`${SERVICE_BASE_URL}/nominativo/tipo/recapito?persona=${this.personType}`)
         .then((response) => {
           this.tipoRecapitoOptions = response.data;
           if (response.data.length === 1) {
-            this.form.tipoRecapitoNominativo = this.tipoRecapitoOptions[0].code;
+            this.form.tipoRecapitoNominativo = this.tipoRecapitoOptions[0].tipoRecapitoNominativo;
           }
         });
     },
     getTipoDocumento() {
-      axios.get(`${SERVICE_BASE_URL}/tipo/documento?persona=${this.personType}`)
+      axios.get(`${SERVICE_BASE_URL}/nominativo/tipo/documento?persona=${this.personType}`)
         .then((response) => {
           this.tipoDocumentoOptions = response.data;
           if (response.data.length === 1) {
-            this.form.tipoDocumentoIdentificazione = this.tipoDocumentoOptions[0].code;
+            this.form.tipoDocumentoIdentificazione = this.tipoDocumentoOptions[0].tipoDocumentoIdentificazione;
           }
         });
     },
