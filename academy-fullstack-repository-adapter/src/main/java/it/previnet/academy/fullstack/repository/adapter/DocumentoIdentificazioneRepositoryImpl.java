@@ -1,6 +1,8 @@
 package it.previnet.academy.fullstack.repository.adapter;
 
 import it.previnet.academy.fullstack.model.DocumentoIdentificazioneEntity;
+import it.previnet.academy.fullstack.model.TipoDocumentoIdentificazioneEntity;
+import it.previnet.academy.fullstack.model.TipoSessoEntity;
 import it.previnet.academy.fullstack.repository.port.DocumentoIdentificazioneRepository;
 import org.jboss.logging.Logger;
 
@@ -21,6 +23,13 @@ public class DocumentoIdentificazioneRepositoryImpl extends AbstractRepositoryIm
         TypedQuery<DocumentoIdentificazioneEntity> query = this.getEntityManager().createQuery(strQuery, DocumentoIdentificazioneEntity.class);
         query.setParameter("tokenNominativo", tokenNominativo);
 
+        return query.getResultList();
+    }
+
+    @Override
+    public List<TipoDocumentoIdentificazioneEntity> fetchTipoDocumento() {
+        String strQuery = "SELECT t FROM TipoDocumentoIdentificazioneEntity t";
+        TypedQuery<TipoDocumentoIdentificazioneEntity> query = this.getEntityManager().createQuery(strQuery, TipoDocumentoIdentificazioneEntity.class);
         return query.getResultList();
     }
 }

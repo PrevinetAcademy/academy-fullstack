@@ -1,6 +1,7 @@
 package it.previnet.academy.fullstack.repository.adapter;
 
 import it.previnet.academy.fullstack.model.NominativoEntity;
+import it.previnet.academy.fullstack.model.TipoSessoEntity;
 import it.previnet.academy.fullstack.repository.port.NominativoRepository;
 import org.jboss.logging.Logger;
 
@@ -37,6 +38,13 @@ public class NominativoRepositoryImpl extends AbstractRepositoryImpl<NominativoE
         TypedQuery<NominativoEntity> query = this.getEntityManager().createQuery(strQuery.toString(), NominativoEntity.class);
         parameters.forEach(query::setParameter);
 
+        return query.getResultList();
+    }
+
+    @Override
+    public List<TipoSessoEntity> fetchTipoSesso() {
+        String strQuery = "SELECT t FROM TipoSessoEntity t";
+        TypedQuery<TipoSessoEntity> query = this.getEntityManager().createQuery(strQuery, TipoSessoEntity.class);
         return query.getResultList();
     }
 }

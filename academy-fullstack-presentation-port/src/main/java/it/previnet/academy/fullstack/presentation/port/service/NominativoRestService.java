@@ -3,6 +3,9 @@ package it.previnet.academy.fullstack.presentation.port.service;
 import it.previnet.academy.fullstack.bean.DocumentoIdentificazione;
 import it.previnet.academy.fullstack.bean.Nominativo;
 import it.previnet.academy.fullstack.bean.RecapitoNominativo;
+import it.previnet.academy.fullstack.bean.TipoDocumentoIdentificazione;
+import it.previnet.academy.fullstack.bean.TipoRecapitoNominativo;
+import it.previnet.academy.fullstack.bean.TipoSesso;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -60,4 +63,19 @@ public interface NominativoRestService {
     @Path("documento/get/{tokenDocumento}")
     @Produces({"image/png", "image/jpg"})
     byte[] getDocumento(@PathParam("tokenDocumento") Integer tokenDocumento);
+
+    @GET
+    @Path("tipo/sesso")
+    @Produces(MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    List<TipoSesso> fetchTipoSesso();
+
+    @GET
+    @Path("tipo/recapito")
+    @Produces(MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    List<TipoRecapitoNominativo> fetchTipoRecapito();
+
+    @GET
+    @Path("tipo/documento")
+    @Produces(MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    List<TipoDocumentoIdentificazione> fetchTipoDocumento();
 }

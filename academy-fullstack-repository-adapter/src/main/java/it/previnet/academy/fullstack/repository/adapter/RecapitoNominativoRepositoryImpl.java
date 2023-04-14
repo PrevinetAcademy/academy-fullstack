@@ -1,6 +1,8 @@
 package it.previnet.academy.fullstack.repository.adapter;
 
 import it.previnet.academy.fullstack.model.RecapitoNominativoEntity;
+import it.previnet.academy.fullstack.model.TipoRecapitoNominativoEntity;
+import it.previnet.academy.fullstack.model.TipoSessoEntity;
 import it.previnet.academy.fullstack.repository.port.RecapitoNominativoRepository;
 import org.jboss.logging.Logger;
 
@@ -21,6 +23,13 @@ public class RecapitoNominativoRepositoryImpl extends AbstractRepositoryImpl<Rec
         TypedQuery<RecapitoNominativoEntity> query = this.getEntityManager().createQuery(strQuery, RecapitoNominativoEntity.class);
         query.setParameter("tokenNominativo", tokenNominativo);
 
+        return query.getResultList();
+    }
+
+    @Override
+    public List<TipoRecapitoNominativoEntity> fetchTipoRecapito() {
+        String strQuery = "SELECT t FROM TipoRecapitoNominativoEntity t";
+        TypedQuery<TipoRecapitoNominativoEntity> query = this.getEntityManager().createQuery(strQuery, TipoRecapitoNominativoEntity.class);
         return query.getResultList();
     }
 }

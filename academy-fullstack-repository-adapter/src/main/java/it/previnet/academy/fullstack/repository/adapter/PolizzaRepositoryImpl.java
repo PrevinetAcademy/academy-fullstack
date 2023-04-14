@@ -31,7 +31,9 @@ public class PolizzaRepositoryImpl extends AbstractRepositoryImpl<PolizzaEntity>
             parameters.put("numPolizza", numPolizza);
         }
 
-        TypedQuery<PolizzaEntity> query = this.getEntityManager().createQuery(strQuery.toString(), PolizzaEntity.class);
+        TypedQuery<PolizzaEntity> query = this.getEntityManager()
+                .createQuery(strQuery.toString(), PolizzaEntity.class)
+                .setMaxResults(100); // LIMIT 100
         parameters.forEach(query::setParameter);
 
         return query.getResultList();

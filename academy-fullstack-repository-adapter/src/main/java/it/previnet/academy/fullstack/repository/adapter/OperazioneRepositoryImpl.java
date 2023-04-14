@@ -18,7 +18,9 @@ public class OperazioneRepositoryImpl extends AbstractRepositoryImpl<OperazioneE
         logger.info("called REPOSITORY fetch");
 
         String strQuery = "SELECT o FROM OperazioneEntity o JOIN o.polizza p WHERE p.tokenPolizza = :tokenPolizza ";
-        TypedQuery<OperazioneEntity> query = this.getEntityManager().createQuery(strQuery, OperazioneEntity.class);
+        TypedQuery<OperazioneEntity> query = this.getEntityManager()
+                .createQuery(strQuery, OperazioneEntity.class)
+                .setMaxResults(100); // LIMIT 100
         query.setParameter("tokenPolizza", tokenPolizza);
 
         return query.getResultList();
