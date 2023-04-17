@@ -3,6 +3,7 @@ package it.previnet.academy.fullstack.bean;
 import it.previnet.academy.fullstack.bean.enums.TipoSesso;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Nominativo {
@@ -225,11 +226,25 @@ public class Nominativo {
         this.recapitoNominativo = recapitoNominativo;
     }
 
+    public void addRecapitoNominativo(RecapitoNominativo recapitoNominativo) {
+        if (this.recapitoNominativo == null) {
+            this.recapitoNominativo = new ArrayList<>();
+        }
+        this.recapitoNominativo.add(recapitoNominativo);
+    }
+
     public List<DocumentoIdentificazione> getDocumentoIdentificazione() {
         return documentoIdentificazione;
     }
 
     public void setDocumentoIdentificazione(List<DocumentoIdentificazione> documentoIdentificazione) {
         this.documentoIdentificazione = documentoIdentificazione;
+    }
+
+    public void addDocumentoIdentificazione(DocumentoIdentificazione documentoIdentificazione) {
+        if (this.documentoIdentificazione == null) {
+            this.documentoIdentificazione = new ArrayList<>();
+        }
+        this.documentoIdentificazione.add(documentoIdentificazione);
     }
 }

@@ -6,6 +6,7 @@ import it.previnet.academy.fullstack.bean.RecapitoNominativo;
 import it.previnet.academy.fullstack.bean.TipoDocumentoIdentificazione;
 import it.previnet.academy.fullstack.bean.TipoRecapitoNominativo;
 import it.previnet.academy.fullstack.bean.TipoSesso;
+import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -30,6 +31,12 @@ public interface NominativoRestService {
     @Consumes(MediaType.APPLICATION_JSON + ";charset=UTF-8")
     @Produces(MediaType.APPLICATION_JSON + ";charset=UTF-8")
     Nominativo save(Nominativo nominativo);
+
+    @POST
+    @Path("upload")
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    @Produces(MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    Nominativo uploadNominativo(MultipartFormDataInput input) throws Exception;
 
     @GET
     @Path("recapito/{tokenNominativo}")
