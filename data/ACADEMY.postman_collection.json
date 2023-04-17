@@ -62,6 +62,72 @@
 			"response": []
 		},
 		{
+			"name": "POLIZZA esercizio1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/academy-fullstack/api/polizza/esercizio1?dataDecorrenza=2018-01-01",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"academy-fullstack",
+						"api",
+						"polizza",
+						"esercizio1"
+					],
+					"query": [
+						{
+							"key": "stato",
+							"value": "0",
+							"disabled": true
+						},
+						{
+							"key": "dataDecorrenza",
+							"value": "2018-01-01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POLIZZA esercizio2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/academy-fullstack/api/polizza/esercizio2?dataDecorrenza=2018-01-01",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"academy-fullstack",
+						"api",
+						"polizza",
+						"esercizio2"
+					],
+					"query": [
+						{
+							"key": "stato",
+							"value": "0",
+							"disabled": true
+						},
+						{
+							"key": "dataDecorrenza",
+							"value": "2018-01-01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "OPERAZIONE fetch",
 			"request": {
 				"method": "GET",
