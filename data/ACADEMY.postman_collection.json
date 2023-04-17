@@ -168,6 +168,44 @@
 			"response": []
 		},
 		{
+			"name": "NOMINATIVO upload",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "data",
+							"value": "{\n    \"codFiscale\": \"RSSMRA80A01L736U\",\n    \"denCognome\": \"ROSSI\",\n    \"denNome\": \"MARIO\",\n    \"tipoSesso\": \"M\",\n    \"dataNascita\": \"1980-01-01T00:00:00\",\n    \"codProvinciaNascita\": \"VE\",\n    \"denComuneNascita\": \"VENEZIA\",\n    \"codNazioneCittadinanza\": \"ITA\",\n    \"tipoRecapitoNominativo\": \"001\",\n    \"denNumeroCivico\": \"24\",\n    \"codCap\": \"31022\",\n    \"denLocalita\": \"PREGANZIOL\",\n    \"codProvincia\": \"TV\",\n    \"codNazione\": \"ITA\",\n    \"denIndirizzo\": \"VIA FORLANINI\",\n    \"tipoDocumentoIdentificazione\": \"01\",\n    \"codDocumentoIdentificazione\": \"AA0000001\",\n    \"dataRilascio\": \"2018-05-09T00:00:00\",\n    \"dataScadenza\": \"2029-01-01T00:00:00\",\n    \"denEnteRilascio\": \"COMUNE\",\n    \"denLocalitaRilascio\": \"PREGANZIOL\",\n    \"codSiglaProvinciaRilascio\": \"TV\",\n    \"codNazioneRilascio\": \"ITA\"\n}\n",
+							"contentType": "application/json",
+							"type": "text"
+						},
+						{
+							"key": "file",
+							"type": "file",
+							"src": ""
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/academy-fullstack/api/nominativo/upload",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"academy-fullstack",
+						"api",
+						"nominativo",
+						"upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "RECAPITO NOMINATIVO fetch",
 			"request": {
 				"method": "GET",
@@ -309,7 +347,7 @@
 				"body": {
 					"mode": "file",
 					"file": {
-						"src": ""
+						"src": "/C:/Users/bittoa/Pictures/ci_fake.png"
 					}
 				},
 				"url": {
