@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 @Table(name = "documento_identificazione")
 public class DocumentoIdentificazioneEntity {
     @Id
-    @SequenceGenerator(name = "tokenDocumentoIdentificativoGenerator", sequenceName = "documento_identificazione_id_seq", allocationSize = 1)
+    @SequenceGenerator(name = "tokenDocumentoIdentificazioneGenerator", sequenceName = "documento_identificazione_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tokenDocumentoIdentificazioneGenerator")
     @Column(name = "token_documento_identificazion", nullable = false)
     private Integer tokenDocumentoIdentificazion;

@@ -1,5 +1,6 @@
 package it.previnet.academy.fullstack.presentation.adapter.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import it.previnet.academy.fullstack.application.port.DocumentoIdentificazioneManager;
 import it.previnet.academy.fullstack.application.port.NominativoManager;
 import it.previnet.academy.fullstack.application.port.RecapitoNominativoManager;
@@ -9,16 +10,28 @@ import it.previnet.academy.fullstack.bean.RecapitoNominativo;
 import it.previnet.academy.fullstack.bean.TipoDocumentoIdentificazione;
 import it.previnet.academy.fullstack.bean.TipoRecapitoNominativo;
 import it.previnet.academy.fullstack.bean.TipoSesso;
+import it.previnet.academy.fullstack.bean.request.NominativoRequest;
 import it.previnet.academy.fullstack.presentation.port.service.NominativoRestService;
+import org.apache.commons.collections4.CollectionUtils;
 import org.jboss.logging.Logger;
+import org.jboss.resteasy.plugins.providers.multipart.InputPart;
+import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.ws.rs.core.MultivaluedMap;
+import java.io.InputStream;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @ApplicationScoped
 public class NominativoRestServiceImpl implements NominativoRestService {
     private static final Logger logger = Logger.getLogger(NominativoRestServiceImpl.class);
+
+    private static final Pattern FILENAME_PATTERN = Pattern.compile(".*filename=\"(.*)\"");
 
     @Inject
     NominativoManager nominativoManager;
@@ -28,6 +41,9 @@ public class NominativoRestServiceImpl implements NominativoRestService {
 
     @Inject
     DocumentoIdentificazioneManager documentoIdentificazioneManager;
+
+    @Inject
+    ObjectMapper objectMapper;
 
     @Override
     public List<Nominativo> fetch(String cognome, String nome, String tipoSesso) {
@@ -39,6 +55,59 @@ public class NominativoRestServiceImpl implements NominativoRestService {
     public Nominativo save(Nominativo nominativo) {
         logger.info("called REST SERVICE save");
         return nominativoManager.save(nominativo);
+    }
+
+    @Override
+    public Nominativo uploadNominativo(MultipartFormDataInput input) throws Exception {
+        logger.info("called REST SERVICE uploadNominativo");
+
+        Map<String, List<InputPart>> uploadForm = input.getFormDataMap();
+        List<InputPart> dataParts = uploadForm.get("data");
+        NominativoRequest nominativoRequest = null;
+
+        if (CollectionUtils.isEmpty(dataParts)) {
+            logger.error("missing data part");
+        } else {
+            InputPart dataPart = dataParts.get(0);
+            try {
+                String body = dataPart.getBody(String.class, null);
+                nominativoRequest = objectMapper.readValue(body, NominativoRequest.class);
+            } catch (Exception e) {
+                logger.error("catching exception", e);
+            }
+        }
+
+        List<InputPart> fileParts = uploadForm.get("file");
+        InputStream file = null;
+
+        if (CollectionUtils.isEmpty(fileParts)) {
+            logger.error("missing file part");
+        } else {
+            InputPart filePart = fileParts.get(0);
+            String filename = "";
+            try {
+                file = filePart.getBody(InputStream.class, null);
+                MultivaluedMap<String, String> headers = filePart.getHeaders();
+                if (!Objects.isNull(headers)) {
+                    String partHeader = headers.getFirst("Content-Disposition");
+                    Matcher matcher = FILENAME_PATTERN.matcher(partHeader);
+                    if (matcher.matches()) {
+                        filename = matcher.group(1);
+                        logger.info("reading uploaded file: " + filename);
+                    } else {
+                        logger.info("reading uploaded file");
+                    }
+                }
+            } catch (Exception e) {
+                logger.error("catching exception", e);
+            }
+        }
+
+        if (nominativoRequest != null && file != null) {
+            return nominativoManager.uploadNominativo(nominativoRequest, file);
+        }
+
+        throw new Exception("missing data");
     }
 
     @Override
