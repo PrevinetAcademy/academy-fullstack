@@ -12,17 +12,27 @@
             label-size="sm"
             class="mb-0"
           >
-            <b-input-group size="sm">
+            <b-input-group size="sm" style="height: 100%;">
               <b-form-input
                 id="filter-input"
                 v-model="filter"
                 type="search"
                 placeholder="Cerca"
+                style="height: 100%;"
               ></b-form-input>
 
               <b-input-group-append>
+                <b-form-select 
+                  v-model="tipoFiltro"
+                  :options="filterOptions"
+                  text-field="denOpzione"
+                  value-field="tipoOpzione"
+                ></b-form-select>
                 <b-button :disabled="!filter" @click="filter = ''"
                   >Cancella</b-button
+                >
+                <b-button variant="primary" :disabled="!filter || !tipoFiltro" @click="handleSearch"
+                  >Cerca</b-button
                 >
               </b-input-group-append>
             </b-input-group>
@@ -67,12 +77,9 @@
         :fields="fields"
         :current-page="currentPage"
         :per-page="perPage"
-        :filter="filter"
-        :filter-included-fields="filterOn"
         stacked="md"
         show-empty
         small
-        @filtered="onFiltered"
       >
         <template #cell(name)="row">
           {{ getAnagraficaName(row.item) }}
@@ -141,20 +148,38 @@ export default Vue.extend({
         },
         { key: "actions", label: "" },
       ],
+      filterOptions: [
+        {
+          tipoOpzione: 'nome',
+          denOpzione: 'NOME',
+        },
+        {
+          tipoOpzione: 'cognome',
+          denOpzione: 'COGNOME',
+        }
+      ],
       totalRows: 1,
       currentPage: 1,
       perPage: 30,
       pageOptions: [10, 15, 30, 60],
       filter: null,
-      filterOn: ['denRagioneSociale', 'denNome', 'denCognome', 'tipoSesso']
+      tipoFiltro: null,
+      filterOn: ['denNome', 'denCognome']
     };
   },
   mounted() {
-    axios.get(`${SERVICE_BASE_URL}/nominativo/fetch`, {
-      params: {
-        cognome: 'ZHJJZLT'
-      }
-    })
+
+  },
+  methods: {
+    getAnagraficaName(anagrafica) {
+      return anagrafica.tipoSesso === 'GIURIDICO' ? anagrafica.denRagioneSociale : anagrafica.denNome
+    },
+    handleSearch() {
+      axios.get(`${SERVICE_BASE_URL}/nominativo/fetch`, {
+        params: {
+          [this.tipoFiltro]: this.filter
+        }
+      })
       .then((response) => {
         this.items = response.data;
         this.totalRows = response.data.length;
@@ -166,16 +191,7 @@ export default Vue.extend({
           variant: "danger"
         });
       })
-  },
-  methods: {
-    getAnagraficaName(anagrafica) {
-      return anagrafica.tipoSesso === 'GIURIDICO' ? anagrafica.denRagioneSociale : anagrafica.denNome
-    },
-    onFiltered(filteredItems) {
-      // Trigger pagination to update the number of buttons/pages due to filtering
-      this.totalRows = filteredItems.length;
-      this.currentPage = 1;
-    },
+    }
   },
 });
 </script>

@@ -86,6 +86,7 @@
                     <validation-provider name="data di nascita" rules="required" v-slot="{errors, valid, touched}">
                       <b-form-datepicker 
                         v-model="form.dataNascita"
+                        :value-as-date="true"
                         placeholder="Seleziona una data"
                         :state="touched ? valid : null"
                       ></b-form-datepicker>
@@ -204,13 +205,27 @@ export default Vue.extend({
         denEmail: "",
         denNome: "",
         denCognome: "",
-        codFisclae: "",
+        codFiscale: "",
         dataNascita: "",
         tipoRecapitoNominativo: "",
         tipoSesso: "",
         tipoDocumentoIdentificazione: "",
-        denRagioneSociale: "",
-        codPartitaIva: ""
+        "codProvinciaNascita": "VE",
+        "denComuneNascita": "VENEZIA",
+        "codNazioneCittadinanza": "ITA",
+        "denNumeroCivico": "24",
+        "codCap": "31022",
+        "denLocalita": "PREGANZIOL",
+        "codProvincia": "TV",
+        "codNazione": "ITA",
+        "denIndirizzo": "VIA FORLANINI",
+        "codDocumentoIdentificazione": "AA0000001",
+        "dataRilascio": "2018-05-09T00:00:00",
+        "dataScadenza": "2029-01-01T00:00:00",
+        "denEnteRilascio": "COMUNE",
+        "denLocalitaRilascio": "PREGANZIOL",
+        "codSiglaProvinciaRilascio": "TV",
+        "codNazioneRilascio": "ITA"
       },
       file: null,
       personTypeOptions: [TIPO_PERSONA.FISICA, TIPO_PERSONA.GIURIDICA],
@@ -234,7 +249,7 @@ export default Vue.extend({
       form.append('file', this.file);
       form.append('data', JSON.stringify(this.form));
 
-      axios.post(`${SERVICE_BASE_URL}/nominativo/save`, form)
+      axios.post(`${SERVICE_BASE_URL}/nominativo/upload`, form)
         .then((response) => {
           console.log(response);
           this.$bvToast.toast("Anagrafica inserita con successo", {
@@ -289,7 +304,7 @@ export default Vue.extend({
       this.form.denEmail = "";
       this.form.denNome = "";
       this.form.denCognome = "";
-      this.form.codFisclae = "";
+      this.form.codFiscale = "";
       this.form.dataNascita = "";
       this.form.tipoRecapitoNominativo = "";
       this.form.tipoSesso = "";
