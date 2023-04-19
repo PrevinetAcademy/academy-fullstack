@@ -1,9 +1,8 @@
 {
 	"info": {
-		"_postman_id": "a41630f7-9b64-4053-8eed-7e8fb488841b",
+		"_postman_id": "2e646c1a-eb0b-407f-b403-93ba9ba00d24",
 		"name": "ACADEMY",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "2750162"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -209,7 +208,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tokenNominativo\": 1750209361,\r\n    \"codFiscale\": \"ZHJPHH49S17I660M\",\r\n    \"codPartitaIva\": null,\r\n    \"denCognome\": \"ZHJJZLTRO\",\r\n    \"denNome\": \"PADHHDGRO\",\r\n    \"tipoSesso\": \"MASCHIO\",\r\n    \"dataNascita\": \"1949-11-17T00:00:00\",\r\n    \"codProvinciaIstatNascita\": \"047\",\r\n    \"denComuneNascita\": \"SERRAVALLE PISTOIESE\",\r\n    \"codNazioneCittadinanza\": \"086\",\r\n    \"descProfessione\": \"00\",\r\n    \"descTitolo\": null,\r\n    \"denNazionalita\": \"ITALIA\",\r\n    \"denNominativo\": null,\r\n    \"denRagioneSociale\": null,\r\n    \"denRagioneSocialeBreve\": null,\r\n    \"dataTimestamp\": null,\r\n    \"denLogin\": null,\r\n    \"flagPrivacy\": \"0\",\r\n    \"flagPrivacy2\": \"0\",\r\n    \"flagPrivacy3\": null,\r\n    \"flagPrivacy4\": null,\r\n    \"dataFirmaPrivacy\": null,\r\n    \"recapitoNominativo\": null,\r\n    \"documentoIdentificazione\": null\r\n}",
+					"raw": "{\r\n    \"codFiscale\": \"ZHJPHH49S17I660M\",\r\n    \"codPartitaIva\": null,\r\n    \"denCognome\": \"ZHJJZLTRO\",\r\n    \"denNome\": \"PADHHDGRO\",\r\n    \"tipoSesso\": \"M\",\r\n    \"dataNascita\": \"1949-11-17T00:00:00\",\r\n    \"codProvinciaIstatNascita\": \"047\",\r\n    \"denComuneNascita\": \"SERRAVALLE PISTOIESE\",\r\n    \"codNazioneCittadinanza\": \"086\",\r\n    \"descProfessione\": \"00\",\r\n    \"descTitolo\": null,\r\n    \"denNazionalita\": \"ITALIA\",\r\n    \"denNominativo\": null,\r\n    \"denRagioneSociale\": null,\r\n    \"denRagioneSocialeBreve\": null,\r\n    \"dataTimestamp\": null,\r\n    \"denLogin\": null,\r\n    \"flagPrivacy\": \"0\",\r\n    \"flagPrivacy2\": \"0\",\r\n    \"flagPrivacy3\": null,\r\n    \"flagPrivacy4\": null,\r\n    \"dataFirmaPrivacy\": null,\r\n    \"recapitoNominativo\": null,\r\n    \"documentoIdentificazione\": null\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -250,7 +249,7 @@
 						{
 							"key": "file",
 							"type": "file",
-							"src": ""
+							"src": []
 						}
 					]
 				},
@@ -413,7 +412,7 @@
 				"body": {
 					"mode": "file",
 					"file": {
-						"src": "/C:/Users/bittoa/Pictures/ci_fake.png"
+						"src": ""
 					}
 				},
 				"url": {
